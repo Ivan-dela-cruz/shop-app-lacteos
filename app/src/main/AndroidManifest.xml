@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="co.desofsi.tiendavirtual">
+    package="co.desofsi.shopapp">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -23,7 +23,7 @@
         android:roundIcon="@mipmap/ic_utc"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".deliveryactivities.HomeDeliveryActivity"></activity>
+        <activity android:name="co.desofsi.shopapp.deliveryactivities.HomeDeliveryActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -37,33 +37,33 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".maps.RouteDeliveryActivity"
+            android:name="co.desofsi.shopapp.maps.RouteDeliveryActivity"
             android:label="@string/title_activity_route_delivery" />
-        <activity android:name=".deliveryactivities.DeliveryDetailActivity" />
-        <activity android:name=".merchantsactivities.MerchantDeatilOrderActivity" />
-        <activity android:name=".activities.ShowOrderDetailActivity" />
+        <activity android:name="co.desofsi.shopapp.deliveryactivities.DeliveryDetailActivity" />
+        <activity android:name="co.desofsi.shopapp.merchantsactivities.MerchantDeatilOrderActivity" />
+        <activity android:name="co.desofsi.shopapp.activities.ShowOrderDetailActivity" />
         <activity
-            android:name=".maps.MapsActivity"
+            android:name="co.desofsi.shopapp.maps.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".maps.MapsActivityOrder"
+            android:name="co.desofsi.shopapp.maps.MapsActivityOrder"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".maps.MapsRouteActivityOrder"
+            android:name="co.desofsi.shopapp.maps.MapsRouteActivityOrder"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".activities.ChangeasswordActivity" />
-        <activity android:name=".activities.EditProfileActivity" />
-        <activity android:name=".activities.ReviewOrderActivity" />
-        <activity android:name=".activities.DetailOrderActivity" />
-        <activity android:name=".activities.ShowProductActivity" />
-        <activity android:name=".activities.ListCategoriesActivity" />
-        <activity android:name=".activities.ListComapiesActivity" />
-        <activity android:name=".merchantsactivities.CompanyOrdersActivity" />
-        <activity android:name=".activities.UserProfileActivity" />
-        <activity android:name=".init.AuthActivity" />
-        <activity android:name=".init.OnBoardActivity" />
-        <activity android:name=".activities.HomeActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="co.desofsi.shopapp.activities.ChangeasswordActivity" />
+        <activity android:name="co.desofsi.shopapp.activities.EditProfileActivity" />
+        <activity android:name="co.desofsi.shopapp.activities.ReviewOrderActivity" />
+        <activity android:name="co.desofsi.shopapp.activities.DetailOrderActivity" />
+        <activity android:name="co.desofsi.shopapp.activities.ShowProductActivity" />
+        <activity android:name="co.desofsi.shopapp.activities.ListCategoriesActivity" />
+        <activity android:name="co.desofsi.shopapp.activities.ListComapiesActivity" />
+        <activity android:name="co.desofsi.shopapp.merchantsactivities.CompanyOrdersActivity" />
+        <activity android:name="co.desofsi.shopapp.activities.UserProfileActivity" />
+        <activity android:name="co.desofsi.shopapp.init.AuthActivity" />
+        <activity android:name="co.desofsi.shopapp.init.OnBoardActivity" />
+        <activity android:name="co.desofsi.shopapp.activities.HomeActivity" />
+        <activity android:name="co.desofsi.shopapp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
