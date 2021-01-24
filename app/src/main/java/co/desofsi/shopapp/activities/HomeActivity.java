@@ -73,7 +73,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         sharedPreferences = HomeActivity.this.getSharedPreferences("user", Context.MODE_PRIVATE);
-        String role = sharedPreferences.getString("role", "");
+       // String role = sharedPreferences.getString("role", "");
         fragmentManager = getSupportFragmentManager();
         //getPositionUser();
 
@@ -82,21 +82,9 @@ public class HomeActivity extends AppCompatActivity {
         MeowBottomNavigation bottomNavigation = findViewById(R.id.bottomNavigation);
 
 
-        if (role.equalsIgnoreCase("Cliente")) {
-            bottomNavigation.add(new MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home_black_24dp));
-            bottomNavigation.add(new MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_baseline_shopping_cart_24));
-            bottomNavigation.add(new MeowBottomNavigation.Model(ID_ACCOUNT, R.drawable.ic_account_circle_black_24dp));
-        }
-        if (role.equalsIgnoreCase("Empresario")) {
-            bottomNavigation.add(new MeowBottomNavigation.Model(ID_MERCHANT, R.drawable.ic_baseline_shopping_cart_24));
-            bottomNavigation.add(new MeowBottomNavigation.Model(ID_MESSAGE, R.drawable.ic_baseline_directions_bike_24));
-            bottomNavigation.add(new MeowBottomNavigation.Model(ID_ACCOUNT, R.drawable.ic_account_circle_black_24dp));
-        }
-        if (role.equalsIgnoreCase("Repartidor")) {
-            bottomNavigation.add(new MeowBottomNavigation.Model(ID_NOTIFICATION, R.drawable.ic_notifications_black_24dp));
-            bottomNavigation.add(new MeowBottomNavigation.Model(ID_CUSTOMER_DELIVERY, R.drawable.ic_baseline_card_giftcard_24));
-            bottomNavigation.add(new MeowBottomNavigation.Model(ID_ACCOUNT, R.drawable.ic_account_circle_black_24dp));
-        }
+        bottomNavigation.add(new MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home_black_24dp));
+        bottomNavigation.add(new MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_baseline_shopping_cart_24));
+        bottomNavigation.add(new MeowBottomNavigation.Model(ID_ACCOUNT, R.drawable.ic_account_circle_black_24dp));
 
 
         //  bottomNavigation.setCount(ID_NOTIFICATION, "115");
@@ -173,18 +161,12 @@ public class HomeActivity extends AppCompatActivity {
 
         //  bottomNavigation.setCount(ID_NOTIFICATION, "115");
 
-        getFuseLocationUser();
 
-        if (role.equalsIgnoreCase("Cliente")) {
-            bottomNavigation.show(ID_HOME, true);
-        }
-        if (role.equalsIgnoreCase("Empresario")) {
-            bottomNavigation.show(ID_MERCHANT, true);
-        }
-        if (role.equalsIgnoreCase("Repartidor")) {
-            bottomNavigation.show(ID_NOTIFICATION, true);
-            CountDownTimer();
-        }
+
+
+        bottomNavigation.show(ID_HOME, true);
+
+
 
 
     }
@@ -205,7 +187,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-               // Toast.makeText(HomeActivity.this, "Puntos actualizados", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(HomeActivity.this, "Puntos actualizados", Toast.LENGTH_SHORT).show();
                 insertLocation();
             }
         };
@@ -226,7 +208,7 @@ public class HomeActivity extends AppCompatActivity {
                             JSONObject object = new JSONObject(response);
                             if (object.getBoolean("success")) {
 
-                             //   Toast.makeText(HomeActivity.this, "Actualizado", Toast.LENGTH_SHORT).show();
+                                //   Toast.makeText(HomeActivity.this, "Actualizado", Toast.LENGTH_SHORT).show();
                                 CountDownTimer();
                             }
                         } catch (Exception e) {
@@ -282,7 +264,7 @@ public class HomeActivity extends AppCompatActivity {
                         if (location != null) {
                             latitude_now = location.getLatitude();
                             longitude_now = location.getLongitude();
-                          //  Toast.makeText(HomeActivity.this, "Lat: " + location.getLatitude() + " Long: " + location.getLongitude(), Toast.LENGTH_SHORT).show();
+                            //  Toast.makeText(HomeActivity.this, "Lat: " + location.getLatitude() + " Long: " + location.getLongitude(), Toast.LENGTH_SHORT).show();
 
                         }
                     }

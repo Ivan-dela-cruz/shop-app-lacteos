@@ -163,13 +163,13 @@ public class SingInFragment extends Fragment {
 
                                 editor.putString("token", object.getString("token"));
                                 editor.putInt("id", user.getInt("id"));
-                                editor.putString("name", user.getString("name"));
-                                editor.putString("username", user.getString("username"));
+                                editor.putString("name", user.getString("nombres"));
+                                editor.putString("username", user.getString("usuario"));
                                 editor.putString("email", user.getString("email"));
                                 editor.putString("url_image", user.getString("url_image"));
                                 editor.putBoolean("isLoggedIn", true);
-                                editor.putString("role", object.getString("role"));
-                                role = object.getString("role");
+                                //editor.putString("role", object.getString("role"));
+                              //  role = object.getString("role");
                                 editor.apply();
 
 
