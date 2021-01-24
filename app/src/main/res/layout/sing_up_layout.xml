@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondologin"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="21.7dp"
+                android:src="@drawable/utc_sinfondo"
+                android:visibility="visible" />
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp">
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="296dp"
+                            android:layout_height="500.3dp"
+                            android:layout_marginBottom="35dp"
+                            android:background="@drawable/white_rounded_corner"
+                            android:orientation="vertical"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15.5dp"
+                                android:layout_marginBottom="12dp"
+                                android:fontFamily="@font/opensans_bold"
+                                android:gravity="center_horizontal"
+                                android:text="Registrate"
+                                android:textColor="#333232"
+                                android:textSize="20.3sp" />
+
+
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_name_layout_sing_up"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="6dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/text_name_sing_up"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Nombres"
+                                    android:inputType="textPersonName"
+                                    android:textSize="15sp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_last_name_layout_sing_up"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="6dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/text_last_name_sing_up"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Apellidos"
+                                    android:inputType="textPersonName"
+                                    android:textSize="15sp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_user_layout_sing_up"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="6dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/text_user_sing_up"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Usuario"
+                                    android:inputType="textPersonName"
+                                    android:textSize="15sp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_email_layout_sing_up"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="6dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/text_email_sing_up"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Correo"
+                                    android:inputType="textEmailAddress"
+                                    android:textSize="15sp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_phone_layout_sing_up"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="6dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/text_phone_sing_up"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Móvil"
+                                    android:inputType="text|phone"
+                                    android:textSize="15sp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_password_layout_sing_up"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="6dp"
+                                app:passwordToggleEnabled="true">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/text_password_sing_up"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Contraseña"
+                                    android:inputType="textPassword"
+                                    android:textSize="15sp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_confirm_password_layout_sing_up"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="6dp"
+                                app:passwordToggleEnabled="true">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/text_confirm_password_sing_up"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Confirmar contraseña"
+                                    android:inputType="textPassword"
+                                    android:textSize="15sp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </FrameLayout>
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btn_sing_up"
+                android:layout_width="296dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner"
+                android:text="Continuar"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="14dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_regular"
+                    android:gravity="center_horizontal"
+                    android:text="Tengo una cuenta"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="13.3sp" />
+
+                <TextView
+                    android:id="@+id/text_sing_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/opensans_bold"
+                    android:gravity="center_horizontal"
+                    android:text="Iniciar sesión"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="13.3sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+</RelativeLayout>

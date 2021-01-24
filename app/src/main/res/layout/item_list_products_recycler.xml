@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/item_list_products_cardview_id"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    cardview:cardCornerRadius="4dp"
+    app:ignore="NamespaceTypo">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/item_list_products_image"
+            android:layout_width="140dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:background="#2d2d2d"/>
+        <LinearLayout
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/item_list_products_name_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/opensans_bold"
+                    android:gravity="start"
+                    android:text="Arroz con pollo"
+                    android:textColor="#2d2d2d"
+                    android:textSize="13sp"
+                    cardview:layout_constraintEnd_toEndOf="parent"
+                    cardview:layout_constraintHorizontal_bias="0.0"
+                    cardview:layout_constraintStart_toStartOf="parent"
+                    cardview:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/item_list_products_description_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_regular"
+                    android:gravity="start"
+                    android:text="Arroz viejo con 22 libras"
+                    android:textColor="#2d2d2d"
+                    android:textSize="10sp"
+                    app:layout_editor_absoluteX="0dp"
+                    cardview:layout_constraintBottom_toBottomOf="parent"
+                    cardview:layout_constraintTop_toBottomOf="@+id/item_list_products_name_id"
+                    cardview:layout_constraintVertical_bias="0.083" />
+
+                <TextView
+                    android:id="@+id/item_list_products_sale_price_id"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/opensans_bold"
+                    android:gravity="start|center"
+                    android:text="$ 44.50"
+                    android:textColor="#2d2d2d"
+                    android:textSize="14sp"
+                    cardview:layout_constraintBottom_toBottomOf="parent"
+                    cardview:layout_constraintEnd_toStartOf="@+id/item_list_products_btn_shop"
+                    cardview:layout_constraintHorizontal_bias="0.0"
+                    cardview:layout_constraintStart_toStartOf="parent"
+                    cardview:layout_constraintTop_toBottomOf="@+id/item_list_products_name_id"
+                    cardview:layout_constraintVertical_bias="1.0" />
+
+                <ImageButton
+
+                    android:id="@+id/item_list_products_btn_shop"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:background="@drawable/rounded_btn_shop"
+                    android:src="@drawable/ic_add_shopping_cart_black_24dp"
+                    cardview:layout_constraintBottom_toBottomOf="parent"
+                    cardview:layout_constraintEnd_toEndOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
