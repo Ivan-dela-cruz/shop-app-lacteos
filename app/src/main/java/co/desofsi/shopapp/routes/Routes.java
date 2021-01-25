@@ -7,7 +7,7 @@ public class Routes {
     public static final String DESTINATION = "&destination=";
     public static final String  API_KEY = "&key=AIzaSyDibwJl271dqQbcVduSLr56yCct_RMX8_g";
 
-    public static final String URL = "http://192.168.0.102:8000/";
+    public static final String URL = "http://192.168.100.8/";
     //public static  final String URL = "https://www.tiendavirtualutc.com/";
     //public static  final String URL = "http://tiendavirtualutc.herokuapp.com/";
     public static final String HOME = URL + "api";
@@ -21,7 +21,7 @@ public class Routes {
     public static final String TYPE_COMPANES = HOME + "/api-companies-type";
     public static final String COMPANIES = HOME + "/api-companies";
     public static final String CATEGORIES = HOME + "/api-categories";
-    public static final String PRODUCTS = HOME + "/api-products";
+    //public static final String PRODUCTS = HOME + "/api-products";
     public static final String SEND_ORDER = HOME + "/api-send-order";
 
     //RUTAS PARA LAS ORDENES
@@ -49,4 +49,8 @@ public class Routes {
 
     //TIMER  REFRESH MAP
     public static final int TIMER_MAP = 30000;
+
+    //CODE
+    public static final String SLIDERS = HOME + "/sliders";
+    public static final String PRODUCTS = HOME + "/productos";
 }
