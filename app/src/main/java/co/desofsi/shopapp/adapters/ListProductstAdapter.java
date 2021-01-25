@@ -46,7 +46,8 @@ public class ListProductstAdapter extends RecyclerView.Adapter<ListProductstAdap
 
         final Product product = list.get(position);
 
-        Picasso.get().load(Routes.URL + product.getUrl_image()).into(holder.imageView_specialty);
+        System.out.println("===>>>== "+product.getUrl_image());
+        Picasso.get().load(product.getUrl_image()).into(holder.imageView_specialty);
         holder.txt_name.setText(product.getName());
         holder.txt_description.setText(product.getDescription());
         holder.txt_price.setText("$ "+product.getSale_price());
