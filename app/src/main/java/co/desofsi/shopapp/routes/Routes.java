@@ -20,8 +20,8 @@ public class Routes {
     public static final String SAVE_PROFILE = HOME + "/save-profile-user";
     public static final String TYPE_COMPANES = HOME + "/api-companies-type";
     public static final String COMPANIES = HOME + "/api-companies";
-    public static final String CATEGORIES = HOME + "/api-categories";
-    public static final String PRODUCTS = HOME + "/api-products";
+    public static final String CATEGORIES = HOME + "/categorias";
+    public static final String PRODUCTS = HOME + "/productos";
     public static final String SEND_ORDER = HOME + "/api-send-order";
 
     //RUTAS PARA LAS ORDENES

@@ -28,7 +28,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import co.desofsi.shopapp.R;
+import co.desofsi.shopapp.activities.HomeActivity;
 import co.desofsi.shopapp.activities.ListCategoriesActivity;
+import co.desofsi.shopapp.merchantsactivities.OrderFragmentMerchant;
 import co.desofsi.shopapp.routes.Routes;
 import co.desofsi.shopapp.models.Category;
 import co.desofsi.shopapp.models.Product;
@@ -51,26 +53,26 @@ public class ListCategoriesAdapter extends RecyclerView.Adapter<ListCategoriesAd
                         try {
                             JSONObject object = new JSONObject(response);
                             if (object.getBoolean("success")) {
-                                JSONArray array = new JSONArray(object.getString("products"));
+                                JSONArray array = new JSONArray(object.getString("productos"));
 
                                 for (int i = 0; i < array.length(); i++) {
                                     JSONObject type_object = array.getJSONObject(i);
 
                                     Product product = new Product();
                                     product.setId(type_object.getInt("id"));
-                                    product.setName(type_object.getString("name"));
-                                    product.setDescription(type_object.getString("description"));
-                                    product.setSale_price(type_object.getString("sale_price"));
+                                    product.setName(type_object.getString("nombre"));
+                                    product.setDescription(type_object.getString("descripcion"));
+                                    product.setSale_price(type_object.getString("precio_venta"));
                                     product.setStock(type_object.getInt("stock"));
-                                    product.setUrl_image(type_object.getString("url_image"));
+                                    product.setUrl_image(type_object.getString("image"));
 
                                     System.out.println("PRODUCTO ENCOTRADO : "+product.getName());
 
                                     ListCategoriesActivity.list_products.add(product);
 
                                 }
-                                ListProductstAdapter listProductstAdapter = new ListProductstAdapter(((ListCategoriesActivity) context), ListCategoriesActivity.list_products);
-                                ListCategoriesActivity.recyclerView_list_products.setAdapter(listProductstAdapter);
+                                ListProductstAdapter listProductstAdapter = new ListProductstAdapter(((HomeActivity) context), ListCategoriesActivity.list_products);
+                                OrderFragmentMerchant.recyclerView_list_products.setAdapter(listProductstAdapter);
 
                             }
                         } catch (Exception e) {
@@ -98,7 +100,7 @@ public class ListCategoriesAdapter extends RecyclerView.Adapter<ListCategoriesAd
             }
 
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(((ListCategoriesActivity) context));
+        RequestQueue requestQueue = Volley.newRequestQueue(((HomeActivity) context));
         requestQueue.add(stringRequest);
     }
 
@@ -106,7 +108,7 @@ public class ListCategoriesAdapter extends RecyclerView.Adapter<ListCategoriesAd
 
         this.context = context;
         this.list = list;
-        sharedPreferences = ((ListCategoriesActivity) context).getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
+        sharedPreferences = ((HomeActivity) context).getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
 
 
     }
