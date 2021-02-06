@@ -155,6 +155,7 @@ public class SingInFragment extends Fragment {
                     public void onResponse(String response) {
                         try {
                             JSONObject object = new JSONObject(response);
+                            System.out.println(object);
                             if (object.getBoolean("success")) {
                                 String role = "";
                                 JSONObject user = object.getJSONObject("user");

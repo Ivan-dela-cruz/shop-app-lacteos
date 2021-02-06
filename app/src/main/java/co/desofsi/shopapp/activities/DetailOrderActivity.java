@@ -70,7 +70,6 @@ public class DetailOrderActivity extends AppCompatActivity {
         try{
             init();
             loadDetail();
-            getPositionUser();
             eventsButtons();
         }catch (Exception e)
         {
@@ -95,7 +94,7 @@ public class DetailOrderActivity extends AppCompatActivity {
         txt_total.setText("$ " + loadTotalPay());
 
 
-        if (ListCategoriesActivity.list_detail.size() == 0) {
+        if (HomeActivity.list_detail.size() == 0) {
             liner_btn.setVisibility(View.GONE);
             relative_empty.setVisibility(View.VISIBLE);
         }
@@ -107,15 +106,15 @@ public class DetailOrderActivity extends AppCompatActivity {
     private void postOrder() {
         dialog.setMessage("Enviando");
         dialog.show();
-        // final String id_user = String.valueOf(ListCategoriesActivity.order.getId_user());
-        final String id_company = String.valueOf(ListCategoriesActivity.order.getId_company());
-        final String total_order = ListCategoriesActivity.order.getTotal();
-        final String longitude_order = ListCategoriesActivity.order.getLongitude_order();
-        final String latitude_order = ListCategoriesActivity.order.getLatitude_order();
+        // final String id_user = String.valueOf(HomeActivity.order.getId_user());
+        final String id_company = String.valueOf(HomeActivity.order.getId_company());
+        final String total_order = HomeActivity.order.getTotal();
+        final String longitude_order = HomeActivity.order.getLongitude_order();
+        final String latitude_order = HomeActivity.order.getLatitude_order();
 
         final JSONArray array = new JSONArray();
         int i = 0;
-        for (DetailOrder detailOrder : ListCategoriesActivity.list_detail) {
+        for (DetailOrder detailOrder : HomeActivity.list_detail) {
             JSONObject object = new JSONObject();
             try {
                 object.put("id_product", detailOrder.getId_product());
@@ -193,12 +192,12 @@ public class DetailOrderActivity extends AppCompatActivity {
         DecimalFormat format = new DecimalFormat("#.00");// el numero de ceros despues del entero
 
         try {
-            if (ListCategoriesActivity.list_detail.size() > 0) {
-                for (DetailOrder detailOrder : ListCategoriesActivity.list_detail) {
+            if (HomeActivity.list_detail.size() > 0) {
+                for (DetailOrder detailOrder : HomeActivity.list_detail) {
                     total += Double.parseDouble(detailOrder.getPrice_total());
                 }
             }
-            ListCategoriesActivity.order.setTotal("" +  format.format(total));
+            HomeActivity.order.setTotal("" +  format.format(total));
             return total;
         } catch (Exception e) {
             return total;
@@ -208,7 +207,7 @@ public class DetailOrderActivity extends AppCompatActivity {
     }
 
     public void loadDetail() {
-        DetailListProductstAdapter listProductstAdapter = new DetailListProductstAdapter(DetailOrderActivity.this, ListCategoriesActivity.list_detail);
+        DetailListProductstAdapter listProductstAdapter = new DetailListProductstAdapter(DetailOrderActivity.this, HomeActivity.list_detail);
         recycler_items.setAdapter(listProductstAdapter);
     }
 
@@ -223,7 +222,7 @@ public class DetailOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(ListCategoriesActivity.order.getLatitude_order() !=null && ListCategoriesActivity.order.getLongitude_order() !=null)
+                if(HomeActivity.order.getLatitude_order() !=null && HomeActivity.order.getLongitude_order() !=null)
 
                 {
                     postOrder();
@@ -235,50 +234,5 @@ public class DetailOrderActivity extends AppCompatActivity {
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void getPositionUser() {
 
-       // ActivityCompat.requestPermissions(DetailOrderActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        if (ActivityCompat.checkSelfPermission(DetailOrderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
-            String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
-            requestPermissions(permissions, PERMISSION_LOCATION);
-        }
-
-        else {
-            locationManager = (LocationManager) DetailOrderActivity.this.getSystemService(Context.LOCATION_SERVICE);
-            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            if (location != null) {
-                //  txt_lon.setText(String.valueOf(llocaliza.getLongitude()));
-                // txt_lati.setText(String.valueOf(llocaliza.getLatitude()));
-                String longitude_order = String.valueOf(location.getLongitude());
-                String latitude_order = String.valueOf(location.getLatitude());
-                ListCategoriesActivity.order.setLatitude_order(latitude_order);
-                ListCategoriesActivity.order.setLongitude_order(longitude_order);
-                btn_confirm.setVisibility(View.VISIBLE);
-                txt_per.setVisibility(View.GONE);
-               // Toast.makeText(DetailOrderActivity.this, " ubicacion  " + location.getLatitude() + " , " + location.getLongitude(), Toast.LENGTH_LONG).show();
-            } else {
-                btn_confirm.setVisibility(View.GONE);
-                txt_per.setVisibility(View.VISIBLE);
-                Toast.makeText(DetailOrderActivity.this, "Tu ubicación no ha sido encontrada", Toast.LENGTH_LONG).show();
-            }
-        }
-
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_LOCATION: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    getPositionUser();
-                } else {
-                    Toast.makeText(DetailOrderActivity.this, "Habilite el permiso de ubicación", Toast.LENGTH_LONG).show();
-
-                }
-            }
-        }
-    }
 }

@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import co.desofsi.shopapp.R;
+import co.desofsi.shopapp.activities.HomeActivity;
 import co.desofsi.shopapp.activities.ListCategoriesActivity;
 import co.desofsi.shopapp.activities.ShowProductActivity;
 import co.desofsi.shopapp.routes.Routes;
@@ -54,7 +55,7 @@ public class ListProductstAdapter extends RecyclerView.Adapter<ListProductstAdap
         holder.btn_shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(((ListCategoriesActivity)context), ShowProductActivity.class);
+                Intent intent =  new Intent(((HomeActivity)context), ShowProductActivity.class);
                 intent.putExtra("product_selected",product);
                 intent.putExtra("position",position);
                 context.startActivity(intent);
