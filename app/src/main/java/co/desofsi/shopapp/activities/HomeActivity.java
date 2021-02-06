@@ -12,6 +12,9 @@ import co.desofsi.shopapp.fragments.RequestDeliveryFragment;
 import co.desofsi.shopapp.fragments.OrderFragment;
 import co.desofsi.shopapp.fragments.MerchantHomeFragment;
 import co.desofsi.shopapp.merchantsactivities.OrderFragmentMerchant;
+import co.desofsi.shopapp.models.DetailOrder;
+import co.desofsi.shopapp.models.Order;
+import co.desofsi.shopapp.models.Product;
 import co.desofsi.shopapp.routes.Routes;
 
 import android.Manifest;
@@ -40,6 +43,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +70,9 @@ public class HomeActivity extends AppCompatActivity {
     private CountDownTimer yourCountDownTimer;
     private double latitude_now = 0;
     private double longitude_now = 0;
-
+    public static ArrayList<Product> list_products  =  new ArrayList<>();
+    public static ArrayList<DetailOrder> list_detail =  new ArrayList<>();
+    public static Order order =  new Order();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

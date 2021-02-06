@@ -46,7 +46,8 @@ public class DetailListProductstAdapter extends RecyclerView.Adapter<DetailListP
 
         final DetailOrder product = list.get(position);
 
-        Picasso.get().load(Routes.URL + product.getUrl_image()).into(holder.imageView_specialty);
+        System.out.println("=>>>>>>>>>>>>>>>>>>>>>=>>>>>><<<<<<<<<<<<<<<"+product.getProduct_name());
+        Picasso.get().load(product.getUrl_image()).into(holder.imageView_specialty);
         holder.txt_name.setText(product.getProduct_name());
         holder.txt_description.setText(product.getProduct_desc());
         holder.txt_price.setText("$ " + product.getPrice_total());

@@ -215,7 +215,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/rounded_btn_shop"
+                    android:background="@drawable/rounded_corner"
                     android:text="Añadir"
                     android:textAllCaps="false"
                     android:textColor="@color/colorWhite"

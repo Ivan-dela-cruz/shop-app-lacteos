@@ -57,13 +57,13 @@ public class ShowProductActivity extends AppCompatActivity {
         btn_min_item = findViewById(R.id.show_product_btn_min);
 
         //RENDERIZAR LOS DATOS
-
-        Picasso.get().load(Routes.URL + product.getUrl_image()).into(imageView_product);
+        System.out.println("================>>>>"+product.getUrl_image());
+        Picasso.get().load( product.getUrl_image()).into(imageView_product);
         text_name.setText(product.getName());
         text_description.setText(product.getDescription());
         text_price.setText("$ " + product.getSale_price());
         textView_cantidad.setText(String.valueOf(cant));
-      //  show_product_noty_items.setText("" + ListCategoriesActivity.list_detail.size());
+        show_product_noty_items.setText("" + HomeActivity.list_detail.size());
 
 
         eventsButtons();
@@ -117,7 +117,7 @@ public class ShowProductActivity extends AppCompatActivity {
                     detailOrder.setProduct_desc(product.getDescription());
                     detailOrder.setCant(cant);
                     detailOrder.setPrice_total(String.valueOf(total));
-                    for (DetailOrder detail: ListCategoriesActivity.list_detail) {
+                    for (DetailOrder detail: HomeActivity.list_detail) {
                         if(detail.getProduct_name().equals(detailOrder.getProduct_name())){
                             double new_price = Double.parseDouble(detail.getPrice_total());
                             int cant = detail.getCant();
@@ -129,8 +129,8 @@ public class ShowProductActivity extends AppCompatActivity {
                         }
                     }
                     if(cont==0){
-                        ListCategoriesActivity.list_detail.add(detailOrder);
-                        show_product_noty_items.setText("" + ListCategoriesActivity.list_detail.size());
+                        HomeActivity.list_detail.add(detailOrder);
+                        show_product_noty_items.setText("" + HomeActivity.list_detail.size());
                         Toast.makeText(ShowProductActivity.this, "Se agrego un producto al carrito", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(ShowProductActivity.this, "Se actualizó un producto del carrito", Toast.LENGTH_SHORT).show();
@@ -156,6 +156,7 @@ public class ShowProductActivity extends AppCompatActivity {
         show_product_btn_shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(ShowProductActivity.this,"ENTR", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(ShowProductActivity.this, DetailOrderActivity.class));
             }
         });
