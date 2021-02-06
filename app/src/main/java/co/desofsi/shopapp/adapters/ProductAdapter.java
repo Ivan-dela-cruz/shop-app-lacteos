@@ -1,6 +1,7 @@
 package co.desofsi.shopapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,10 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import co.desofsi.shopapp.R;
+import co.desofsi.shopapp.activities.HomeActivity;
+import co.desofsi.shopapp.activities.ShowProductActivity;
 import co.desofsi.shopapp.models.Product;
+import co.desofsi.shopapp.routes.Routes;
 
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductHolder> {
@@ -44,7 +48,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
 
         // Picasso.get().load(Constant.URL+"img/users/"+specialty.getDoctor().getUrl_image()).into(holder.image_doctor);
 
-        System.out.println(product.getUrl_image());
+       System.out.println("PROD"+product.getUrl_image());
         Picasso.get().load(product.getUrl_image()).into(holder.imageProduct); //descomentar en produccion
         //Picasso.get().load(estate.getUrl_image()).into(holder.imageProduct);
         // Picasso.get().load("https://i.imgur.com/tGbaZCY.jpg").into(holder.imageProduct);
@@ -56,13 +60,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         //   holder.cardView.setCardBackgroundColor(Color.parseColor(String.valueOf(R.color.colorRed)));
         holder.cardViewProduct.setRadius(40);
 
-      /*  holder.cardViewProduct.setOnClickListener(new View.OnClickListener() {
+       holder.cardViewProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent((HomeActivity)context, MenuEstatesActivity.class);
+                Intent intent = new Intent((HomeActivity)context, ShowProductActivity.class);
+                intent.putExtra("product_selected",product);
+                intent.putExtra("position",position);
                 context.startActivity(intent);
             }
-        });*/
+        });
     }
 
     @Override

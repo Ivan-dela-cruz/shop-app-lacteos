@@ -44,9 +44,8 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderHold
 
         // Picasso.get().load(Constant.URL+"img/users/"+specialty.getDoctor().getUrl_image()).into(holder.image_doctor);
 
-        System.out.println(slider.getUrlImage());
+       System.out.println("SLIDER "+slider.getUrlImage());
         Picasso.get().load(slider.getUrlImage()).into(holder.imageSlider); //descomentar en produccion
-        //Picasso.get().load(estate.getUrl_image()).into(holder.imageSlider);
         // Picasso.get().load("https://i.imgur.com/tGbaZCY.jpg").into(holder.imageSlider);
       //  holder.txt_name_estate.setText(estate.getName());
        // holder.txt_addres_estate.setText(estate.getAddress());
