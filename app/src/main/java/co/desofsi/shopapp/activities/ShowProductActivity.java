@@ -63,7 +63,7 @@ public class ShowProductActivity extends AppCompatActivity {
         text_description.setText(product.getDescription());
         text_price.setText("$ " + product.getSale_price());
         textView_cantidad.setText(String.valueOf(cant));
-        show_product_noty_items.setText("" + ListCategoriesActivity.list_detail.size());
+      //  show_product_noty_items.setText("" + ListCategoriesActivity.list_detail.size());
 
 
         eventsButtons();
