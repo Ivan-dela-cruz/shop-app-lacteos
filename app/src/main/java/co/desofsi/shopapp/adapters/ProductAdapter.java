@@ -60,7 +60,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         //   holder.cardView.setCardBackgroundColor(Color.parseColor(String.valueOf(R.color.colorRed)));
         holder.cardViewProduct.setRadius(40);
 
-       holder.cardViewProduct.setOnClickListener(new View.OnClickListener() {
+       holder.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent((HomeActivity)context, ShowProductActivity.class);
@@ -92,7 +92,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
             txtPrice = itemView.findViewById(R.id.txtPriceHP);
             imageProduct = itemView.findViewById(R.id.imageHP);
             cardViewProduct = itemView.findViewById(R.id.cardViewHP);
-            btnAdd = itemView.findViewById(R.id.item_list_products_btn_shop);
+            btnAdd = itemView.findViewById(R.id.btnAddCart);
         }
     }
 

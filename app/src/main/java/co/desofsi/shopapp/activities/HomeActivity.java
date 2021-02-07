@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home_black_24dp));
-        bottomNavigation.add(new MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_baseline_shopping_cart_24));
+        bottomNavigation.add(new MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_orders));
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_MERCHANT, R.drawable.ic_baseline_shopping_cart_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_ACCOUNT, R.drawable.ic_account_circle_black_24dp));
 

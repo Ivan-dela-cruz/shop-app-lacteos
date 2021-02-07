@@ -38,7 +38,7 @@ public class ListProductstAdapter extends RecyclerView.Adapter<ListProductstAdap
     @NonNull
     @Override
     public ListCategoriesHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_products_recycler, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_home_products, parent, false);
         return new ListCategoriesHolder(view);
     }
 
@@ -48,11 +48,11 @@ public class ListProductstAdapter extends RecyclerView.Adapter<ListProductstAdap
         final Product product = list.get(position);
 
         System.out.println("===>>>== "+product.getUrl_image());
-        Picasso.get().load(product.getUrl_image()).into(holder.imageView_specialty);
-        holder.txt_name.setText(product.getName());
-        holder.txt_description.setText(product.getDescription());
-        holder.txt_price.setText("$ "+product.getSale_price());
-        holder.btn_shop.setOnClickListener(new View.OnClickListener() {
+        Picasso.get().load(product.getUrl_image()).into(holder.imageHP);
+        holder.txtNameHP.setText(product.getName());
+//        holder.txt_description.setText(product.getDescription());
+        holder.txtPriceHP.setText("$ "+product.getSale_price());
+        holder.btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent =  new Intent(((HomeActivity)context), ShowProductActivity.class);
@@ -61,7 +61,7 @@ public class ListProductstAdapter extends RecyclerView.Adapter<ListProductstAdap
                 context.startActivity(intent);
             }
         });
-        //holder.txt_price.setText(product.getSale_price());
+        //holder.txtPriceHP.setText(product.getSale_price());
 
 
         /*
@@ -86,20 +86,20 @@ public class ListProductstAdapter extends RecyclerView.Adapter<ListProductstAdap
 
     class ListCategoriesHolder extends RecyclerView.ViewHolder {
 
-        private TextView txt_name, txt_description, txt_price;
-        private ImageView imageView_specialty;
-        private ImageButton btn_shop;
+        private TextView txtNameHP, txt_description, txtPriceHP;
+        private ImageView imageHP;
+        private ImageButton btnAddCart;
 
         private CardView cardView;
 
         public ListCategoriesHolder(@NonNull View itemView) {
             super(itemView);
-            txt_name = itemView.findViewById(R.id.item_list_products_name_id);
-            txt_description = itemView.findViewById(R.id.item_list_products_description_id);
-            txt_price = itemView.findViewById(R.id.item_list_products_sale_price_id);
-            btn_shop = itemView.findViewById(R.id.item_list_products_btn_shop);
-            imageView_specialty = (ImageView) itemView.findViewById(R.id.item_list_products_image);
-            cardView = itemView.findViewById(R.id.item_list_products_cardview_id);
+            txtNameHP = itemView.findViewById(R.id.txtNameHP);
+           // txt_description = itemView.findViewById(R.id.item_list_products_description_id);
+            txtPriceHP = itemView.findViewById(R.id.txtPriceHP);
+            btnAddCart = itemView.findViewById(R.id.btnAddCart);
+            imageHP = (ImageView) itemView.findViewById(R.id.imageHP);
+            cardView = itemView.findViewById(R.id.cardViewHP);
         }
 
 

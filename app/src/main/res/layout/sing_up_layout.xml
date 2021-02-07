@@ -20,11 +20,11 @@
 
 
             <ImageView
-                android:layout_width="140dp"
+                android:layout_width="340dp"
                 android:layout_height="140dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="21.7dp"
-                android:src="@drawable/utc_sinfondo"
+                android:src="@drawable/logoleche_shop"
                 android:visibility="visible" />
 
 

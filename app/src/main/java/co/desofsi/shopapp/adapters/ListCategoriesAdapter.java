@@ -2,6 +2,7 @@ package co.desofsi.shopapp.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +24,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
 import co.desofsi.shopapp.R;
 import co.desofsi.shopapp.activities.HomeActivity;
 import co.desofsi.shopapp.activities.ListCategoriesActivity;
@@ -66,7 +69,7 @@ public class ListCategoriesAdapter extends RecyclerView.Adapter<ListCategoriesAd
                                     product.setStock(type_object.getInt("stock"));
                                     product.setUrl_image(type_object.getString("image"));
 
-                                    System.out.println("PRODUCTO ENCOTRADO : "+product.getName());
+                                    System.out.println("PRODUCTO ENCOTRADO : " + product.getName());
 
                                     ListCategoriesActivity.list_products.add(product);
 
@@ -79,14 +82,14 @@ public class ListCategoriesAdapter extends RecyclerView.Adapter<ListCategoriesAd
 
                             e.printStackTrace();
                         }
-                       // ListCategoriesActivity.refreshLayout.setRefreshing(false);
+                        // ListCategoriesActivity.refreshLayout.setRefreshing(false);
 
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                      //  ListCategoriesActivity.refreshLayout.setRefreshing(false);
+                        //  ListCategoriesActivity.refreshLayout.setRefreshing(false);
                         System.out.println(error);
 
                     }
@@ -128,6 +131,22 @@ public class ListCategoriesAdapter extends RecyclerView.Adapter<ListCategoriesAd
         Picasso.get().load(Routes.URL + categoy.getUrl_image()).into(holder.imageView_specialty);
         // System.out.println(company.getName());
         holder.txt_name.setText(categoy.getName());
+
+        String[] colors = {
+                "FF8A65",//md_deep_orange_300
+                "4DD0E1",//md_cyan_300
+                "81C784",//md_green_300
+                "9575CD",//md_deep_purple_300
+                "E57373",//md_red_300
+                "64B5F6",//md_blue_300
+                "F06292",//md_pink_300
+                "DCE775",//md_lime_300
+                "BA68C8",//md_purple_300
+                "7986CB",//md_indigo_300
+        };
+        Random rand = new Random();
+
+        holder.cardView.setCardBackgroundColor(Color.parseColor("#"+colors[rand.nextInt(colors.length)]));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

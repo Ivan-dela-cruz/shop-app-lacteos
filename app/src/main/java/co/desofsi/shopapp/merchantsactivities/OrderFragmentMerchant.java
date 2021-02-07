@@ -122,8 +122,8 @@ public class OrderFragmentMerchant extends Fragment {
         ///COMPONENTES DE LA LISTA DE PRODUCTOS
         recyclerView_list_products = view.findViewById(R.id.list_categories_products_recycler);
         //recyclerView_list_products.setHasFixedSize(true);
-        //LinearLayoutManager mLayoutManager = new GridLayoutManager(ListCategoriesActivity.this, 2);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+      //  LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView_list_products.setLayoutManager(mLayoutManager);
         // recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         refreshLayout = view.findViewById(R.id.list_categories_products_refresh_swipe);
