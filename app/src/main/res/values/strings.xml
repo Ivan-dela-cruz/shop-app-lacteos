@@ -7,4 +7,5 @@
     <string name="name">Nombre</string>
     <string name="description">Descripcion</string>
     <string name="price">Precio</string>
+    <string name="name_project">Lácteos Rodriguez</string>
 </resources>

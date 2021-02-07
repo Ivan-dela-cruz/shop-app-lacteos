@@ -9,7 +9,6 @@ android:layout_margin="5dp"
 android:foreground="?android:attr/selectableItemBackground"
 android:orientation="vertical"
 app:ignore="NamespaceTypo"
-    android:clickable="true"
 cardview:cardCornerRadius="12dp">
 
 <RelativeLayout
@@ -106,7 +105,7 @@ cardview:cardCornerRadius="12dp">
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/item_list_products_btn_shop"
+        android:id="@+id/btnAddCart"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentEnd="true"
