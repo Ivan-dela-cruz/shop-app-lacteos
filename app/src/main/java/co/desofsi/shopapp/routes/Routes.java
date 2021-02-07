@@ -7,7 +7,7 @@ public class Routes {
     public static final String DESTINATION = "&destination=";
     public static final String  API_KEY = "&key=AIzaSyDibwJl271dqQbcVduSLr56yCct_RMX8_g";
 
-    public static final String URL = "http://192.168.100.8/";
+    public static final String URL = "http://54.88.32.18/";
     //public static  final String URL = "https://www.tiendavirtualutc.com/";
     //public static  final String URL = "http://tiendavirtualutc.herokuapp.com/";
     public static final String HOME = URL + "api";
@@ -22,7 +22,7 @@ public class Routes {
     public static final String COMPANIES = HOME + "/api-companies";
     public static final String CATEGORIES = HOME + "/categorias";
     public static final String PRODUCTS = HOME + "/productos";
-    public static final String SEND_ORDER = HOME + "/api-send-order";
+    public static final String SEND_ORDER = HOME + "/store-shop";
 
     //RUTAS PARA LAS ORDENES
 

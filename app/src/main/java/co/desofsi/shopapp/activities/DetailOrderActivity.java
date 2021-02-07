@@ -130,7 +130,8 @@ public class DetailOrderActivity extends AppCompatActivity {
             array.put(object);
             i++;
         }
-        //System.out.println("ARRAY ENVIADO ===>> \n" + array.toString());
+        System.out.println("ARRAY ENVIADO ===>> \n" + total_order.replace(',','.'));
+        System.out.println("ARRAY ENVIADO ===>> \n" + array.toString());
         //System.out.println("ENCABEZAADO ENVIADO ===>> \n" +" = "+id_company+" = "+total_order);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Routes.SEND_ORDER,
@@ -141,9 +142,11 @@ public class DetailOrderActivity extends AppCompatActivity {
                             JSONObject object = new JSONObject(response);
                             if (object.getBoolean("success")) {
 
-                                startActivity(new Intent(DetailOrderActivity.this, ReviewOrderActivity.class));
+                               // startActivity(new Intent(DetailOrderActivity.this, ReviewOrderActivity.class));
+                                startActivity(new Intent(DetailOrderActivity.this, HomeActivity.class));
+                                HomeActivity.list_detail.clear();
                                 finish();
-                                Toast.makeText(DetailOrderActivity.this, "Enviado", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DetailOrderActivity.this, "Compra realizada con exito", Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (Exception e) {
@@ -173,10 +176,10 @@ public class DetailOrderActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<String, String>();
-                map.put("id_company", id_company);
-                map.put("total_order", total_order);
-                map.put("longitude",longitude_order);
-                map.put("latitude",latitude_order);
+               // map.put("id_company", id_company);
+                map.put("total_order", total_order.replace(',','.'));
+                //map.put("longitude",longitude_order);
+                //map.put("latitude",latitude_order);
                 map.put("detail_order", array.toString());
                 return map;
             }
@@ -222,13 +225,9 @@ public class DetailOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(HomeActivity.order.getLatitude_order() !=null && HomeActivity.order.getLongitude_order() !=null)
 
-                {
                     postOrder();
-                }else{
-                    Toast.makeText(DetailOrderActivity.this, "Tu ubicación no ha sido encontrada, revisa tu dispositivo", Toast.LENGTH_LONG).show();
-                }
+
                 // startActivity(new Intent(DetailOrderActivity.this, ReviewOrderActivity.class));
             }
         });

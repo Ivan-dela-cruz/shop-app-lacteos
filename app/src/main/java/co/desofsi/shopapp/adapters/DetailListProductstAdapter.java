@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import co.desofsi.shopapp.R;
 import co.desofsi.shopapp.activities.DetailOrderActivity;
+import co.desofsi.shopapp.activities.HomeActivity;
 import co.desofsi.shopapp.activities.ListCategoriesActivity;
 import co.desofsi.shopapp.routes.Routes;
 import co.desofsi.shopapp.models.DetailOrder;
@@ -97,11 +98,11 @@ public class DetailListProductstAdapter extends RecyclerView.Adapter<DetailListP
             @Override
             public void onClick(View v) {
                 int new_position = holder.getAdapterPosition();
-                ListCategoriesActivity.list_detail.remove(new_position);
+                HomeActivity.list_detail.remove(new_position);
                 notifyItemRemoved(position);
                 notifyDataSetChanged();
                 DetailOrderActivity.txt_total.setText("$ " + DetailOrderActivity.loadTotalPay());
-                if (ListCategoriesActivity.list_detail.size() == 0) {
+                if (HomeActivity.list_detail.size() == 0) {
                     DetailOrderActivity.liner_btn.setVisibility(View.GONE);
                     DetailOrderActivity.relative_empty.setVisibility(View.VISIBLE);
                 }
