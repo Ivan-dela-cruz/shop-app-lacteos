@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TiendaVirtual</string>
+    <string name="app_name">Venta Lacteos</string>
     <string name="main_page_selected">%s page is selected</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_route_delivery">Map</string>

@@ -28,7 +28,7 @@
                 android:layout_height="140dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="21.7dp"
-                android:src="@drawable/logoleche_shop"
+                android:src="@drawable/logovaca"
                 android:visibility="visible" />
 
 

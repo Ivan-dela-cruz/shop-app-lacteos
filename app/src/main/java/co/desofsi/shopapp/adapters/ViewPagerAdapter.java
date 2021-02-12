@@ -20,19 +20,19 @@ public class ViewPagerAdapter extends PagerAdapter {
         this.context = context;
     }
     private int images[] = {
-            R.drawable.delivery,
-            R.drawable.catalogo,
-            R.drawable.shop_women,
+            R.drawable.vp_product1,
+            R.drawable.vp_venta2,
+            R.drawable.vp_ubicacion3,
     };
     private String titles[] = {
-            "Entregas a Domicilio",
-            "Incrementas tu ventas",
-            "Realiza tus pedidos"
+            "Venta de productos lácteos ",
+            "Creación de productos",
+            "Se ubica"
     };
     private String descriptions[] = {
-            "Recibe tus productos en la comodidad de tu hogar",
-            "Promociona tus productos o servicios en la ciudad",
-            "Pide tus productos a cuelquier tienda o restaurante de la ciudad"
+            "En este aplicativo móvil se visualizará y se venderá la producción que realiza en la asociación de productores de leche “Simón Rodríguez”",
+            "Producto de calidad e higiénicamente empacado y con todas las normas de bioseguridad",
+            "Dirección: Cantón: Cotopaxi Parroquia: Mulaló, Barrio: San Agustín del callo"
     };
 
     @Override
