@@ -34,8 +34,10 @@
                     android:scaleType="centerCrop"
                     android:src="@color/colorLightGrey" />
 
-                <!--TextView
-                    android:id="@+id/recycler_estate_name"
+                <TextView
+                    android:maxLength="250"
+                    android:background="@drawable/bg_transparent"
+                    android:id="@+id/lblTitleSlider"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -45,26 +47,26 @@
                     android:layout_marginTop="82dp"
                     android:layout_marginEnd="9dp"
                     android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/lato_bold"
-                    android:text="Nombre"
+                    android:text="TEXTO"
                     android:textColor="@color/colorWhite"
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/recycler_estate_address"
+                    android:maxLength="250"
+                    android:background="@drawable/bg_transparent"
+                    android:id="@+id/lblDescriptionSlider"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/recycler_estate_name"
+                    android:layout_below="@+id/lblTitleSlider"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="14dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="11dp"
                     android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="Dirección"
+                    android:text="DESCRIPCION"
                     android:textColor="@color/colorWhite"
-                    android:textSize="12sp" /-->
+                    android:textSize="12sp" />
 
             </RelativeLayout>
 

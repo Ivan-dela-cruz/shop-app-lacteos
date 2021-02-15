@@ -47,8 +47,8 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderHold
        System.out.println("SLIDER "+slider.getUrlImage());
         Picasso.get().load(slider.getUrlImage()).into(holder.imageSlider); //descomentar en produccion
         // Picasso.get().load("https://i.imgur.com/tGbaZCY.jpg").into(holder.imageSlider);
-      //  holder.txt_name_estate.setText(estate.getName());
-       // holder.txt_addres_estate.setText(estate.getAddress());
+       holder.lblTitleSlider.setText(slider.getTitle());
+        holder.lblDescriptionSlider.setText(slider.getDescription());
 
         //   holder.cardView.setCardBackgroundColor(Color.parseColor(String.valueOf(R.color.colorRed)));
         holder.cardViewSlider.setRadius(40);
@@ -70,15 +70,15 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderHold
 
     class SliderHolder extends RecyclerView.ViewHolder{
 
-       // private TextView txt_name_estate,txt_addres_estate;
+        private TextView lblTitleSlider,lblDescriptionSlider;
         private ImageView imageSlider;
         private CardView cardViewSlider;
 
 
         public SliderHolder(@NonNull View itemView) {
             super(itemView);
-           // txt_name_estate = itemView.findViewById(R.id.recycler_estate_name);
-           // txt_addres_estate= itemView.findViewById(R.id.recycler_estate_address);
+            lblTitleSlider = itemView.findViewById(R.id.lblTitleSlider);
+            lblDescriptionSlider= itemView.findViewById(R.id.lblDescriptionSlider);
             imageSlider = itemView.findViewById(R.id.imageSlider);
             cardViewSlider = itemView.findViewById(R.id.cardViewSlider);
         }
