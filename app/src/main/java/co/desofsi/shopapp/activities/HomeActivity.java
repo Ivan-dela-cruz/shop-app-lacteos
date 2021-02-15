@@ -12,6 +12,7 @@ import co.desofsi.shopapp.fragments.RequestDeliveryFragment;
 import co.desofsi.shopapp.fragments.OrderFragment;
 import co.desofsi.shopapp.fragments.MerchantHomeFragment;
 import co.desofsi.shopapp.merchantsactivities.OrderFragmentMerchant;
+import co.desofsi.shopapp.models.DateClass;
 import co.desofsi.shopapp.models.DetailOrder;
 import co.desofsi.shopapp.models.Order;
 import co.desofsi.shopapp.models.Product;
@@ -73,13 +74,26 @@ public class HomeActivity extends AppCompatActivity {
     public static ArrayList<Product> list_products  =  new ArrayList<>();
     public static ArrayList<DetailOrder> list_detail =  new ArrayList<>();
     public static Order order =  new Order();
+    ///fechas
+    private DateClass dateClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        dateClass = new DateClass();
         sharedPreferences = HomeActivity.this.getSharedPreferences("user", Context.MODE_PRIVATE);
        // String role = sharedPreferences.getString("role", "");
+        int id_user = sharedPreferences.getInt("id", 0);
+        String name = sharedPreferences.getString("name","");
+        order.setId_user(id_user);
+        order.setId_company(0);
+        order.setName_company("Lacteos Simón Rodriguez");
+        order.setName_customer(name);
+        order.setDate(dateClass.dateToday());
+        order.setDate_format(dateClass.dateTodayFormatServer());
+
         fragmentManager = getSupportFragmentManager();
         //getPositionUser();
 
@@ -119,7 +133,7 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case ID_EXPLORE:
                         name = "EXPLORE";
-                        fragmentManager.beginTransaction().replace(R.id.home_frame_container, new OrderFragment(), OrderFragment.class.getSimpleName()).commit();
+                        fragmentManager.beginTransaction().replace(R.id.home_frame_container, new MerchantHomeFragment(), MerchantHomeFragment.class.getSimpleName()).commit();
 
                         break;
                     case ID_MESSAGE:

@@ -3,6 +3,7 @@ package co.desofsi.shopapp.merchantsactivities;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
@@ -55,7 +58,7 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
 
     private ImageButton btn_home, btn_download;
-    private TextView txt_order_number, txt_order_customer, txt_order_data, txt_order_company, txt_order_total, txt_status;
+    private TextView txt_order_number,  txt_order_data,  txt_order_total ;
     private Button btn_delivery, btn_deactivate;
     private ScrollView scrollView;
     private DateClass dateClass;
@@ -68,6 +71,17 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merchant_deatil_order);
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= 21) {
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                //  window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+                window.setStatusBarColor(ContextCompat.getColor(this, R.color.md_blue_800));
+                //getWindow().setStatusBarColor(Color.TRANSPARENT);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try {
             order = new Order();
             order = (Order) getIntent().getExtras().getSerializable("order");
@@ -97,9 +111,9 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
         sharedPreferences = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
         dateClass = new DateClass();
         txt_order_number = findViewById(R.id.merchant_detail_order_txt_order_number);
-        txt_order_customer = findViewById(R.id.merchant_detail_order_txt_customer);
+
         txt_order_data = findViewById(R.id.merchant_detail_order_txt_date);
-        txt_order_company = findViewById(R.id.merchant_detail_order_txt_company);
+
         txt_order_total = findViewById(R.id.merchant_detail_order_txt_total);
         btn_home = findViewById(R.id.merchant_detail_order_btn_back);
         btn_download = findViewById(R.id.merchant_detail_order_btn_download);
@@ -107,7 +121,7 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
         btn_deactivate = findViewById(R.id.merchant_detail_order_btn_deactivate);
         scrollView = findViewById(R.id.merchant_detail_order_scroll);
         recyclerView = findViewById(R.id.merchant_detail_order_recycler);
-        txt_status = findViewById(R.id.merchant_detail_order_txt_status);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MerchantDeatilOrderActivity.this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
     }
@@ -115,11 +129,10 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
     public void loadReviewOrder() {
 
         txt_order_total.setText("$ " + order.getTotal());
-        txt_order_company.setText(order.getName_company());
-        txt_order_customer.setText(order.getName_customer());
+
         txt_order_data.setText(dateClass.dateFormatHuman(order.getDate()));
         txt_order_number.setText(order.getOrder_number());
-        txt_status.setText(order.getStatus());
+
         scrollView.pageScroll(View.FOCUS_UP);
 
     }
@@ -308,29 +321,19 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
                                 System.out.println("ARRAY \n" + array + "  =>>>");
                                 for (int i = 0; i < array.length(); i++) {
                                     JSONObject type_object = array.getJSONObject(i);
-                                          /*
-                                            "id_order": 1,
-                                            "id_product": 2,
-                                            "quanty": 1,
-                                            "product_name": "Mesa color azu",
-                                            "product_desc": "mesa azul 4 sillas",
-                                            "price_unit": 200,
-                                            "price_total": 200,
-                                            "created_at": "2020-07-29T04:51:30.000000Z",
-
-                                           */
                                     DetailOrder detail = new DetailOrder();
                                     detail.setId(type_object.getInt("id"));
-                                    detail.setId_order(type_object.getInt("id_order"));
-                                    detail.setId_product(type_object.getInt("id_product"));
-                                    detail.setCant(type_object.getInt("quanty"));
-                                    detail.setProduct_name(type_object.getString("product_name"));
-                                    detail.setProduct_desc(type_object.getString("product_desc"));
-                                    detail.setPrice_unit(type_object.getString("price_unit"));
-                                    detail.setPrice_total(type_object.getString("price_total"));
+                                    detail.setId_order( order.getId());
+                                    detail.setId_product(type_object.getInt("articulo_id"));
+                                    detail.setCant(type_object.getInt("cantidad"));
+                                    detail.setProduct_name(type_object.getString("articulo"));
+                                    detail.setProduct_desc(type_object.getString("descripcion"));
+                                    detail.setPrice_unit(type_object.getString("precio_venta"));
+                                    detail.setPrice_total(type_object.getString("precio"));
                                     lis_products.add(detail);
+                                    System.out.println("lista \n" + type_object + "  =>>>");
                                 }
-                                System.out.println("lista \n" + lis_products.size() + "  =>>>");
+
                                 ReviewListProductstAdapter orderListAdapter = new ReviewListProductstAdapter(MerchantDeatilOrderActivity.this, lis_products);
                                 recyclerView.setAdapter(orderListAdapter);
 

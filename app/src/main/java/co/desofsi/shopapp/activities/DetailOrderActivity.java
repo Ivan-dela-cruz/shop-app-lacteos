@@ -142,9 +142,9 @@ public class DetailOrderActivity extends AppCompatActivity {
                             JSONObject object = new JSONObject(response);
                             if (object.getBoolean("success")) {
 
-                               // startActivity(new Intent(DetailOrderActivity.this, ReviewOrderActivity.class));
-                                startActivity(new Intent(DetailOrderActivity.this, HomeActivity.class));
-                                HomeActivity.list_detail.clear();
+                               startActivity(new Intent(DetailOrderActivity.this, ReviewOrderActivity.class));
+                               // startActivity(new Intent(DetailOrderActivity.this, HomeActivity.class));
+                                //HomeActivity.list_detail.clear();
                                 finish();
                                 Toast.makeText(DetailOrderActivity.this, "Compra realizada con exito", Toast.LENGTH_SHORT).show();
                             }

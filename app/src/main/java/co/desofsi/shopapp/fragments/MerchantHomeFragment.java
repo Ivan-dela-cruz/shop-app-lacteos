@@ -90,21 +90,15 @@ public class MerchantHomeFragment extends Fragment {
                                 for (int i = 0; i < array.length(); i++) {
                                     JSONObject type_object = array.getJSONObject(i);
                                     Order order = new Order();
+
                                     order.setId(type_object.getInt("id"));
-                                    order.setId_customer(type_object.getInt("id_customer"));
-                                    order.setId_user(type_object.getInt("id_user"));
-                                    order.setId_company(type_object.getInt("id_company"));
-                                    order.setName_customer(type_object.getString("name_customer"));
-                                    order.setName_company(type_object.getString("name_company"));
-                                    order.setOrder_number(type_object.getString("order_number"));
+                                    order.setId_customer(type_object.getInt("idcliente"));
+                                    order.setId_user(type_object.getInt("idcliente"));
+                                    order.setOrder_number(type_object.getString("num_comprobante"));
                                     order.setTotal(type_object.getString("total"));
-                                    order.setStatus(type_object.getString("status"));
-                                    order.setDate(type_object.getString("created_at"));
-                                    order.setUrl_order(type_object.getString("url_order"));
-                                    order.setLongitude_company(type_object.getString("longitude_com"));
-                                    order.setLatitude_company(type_object.getString("latitude_com"));
-                                    order.setLongitude_order(type_object.getString("longitude_order"));
-                                    order.setLatitude_order(type_object.getString("latitude_order"));
+                                    order.setStatus(type_object.getString("estado"));
+                                    order.setDate(type_object.getString("fecha_hora"));
+                                    order.setUrl_order(type_object.getString("url_file"));
 
                                     lis_orders.add(order);
                                 }

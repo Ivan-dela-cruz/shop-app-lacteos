@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import co.desofsi.shopapp.R;
+import co.desofsi.shopapp.activities.HomeActivity;
 import co.desofsi.shopapp.merchantsactivities.CompanyOrdersActivity;
 import co.desofsi.shopapp.merchantsactivities.MerchantDeatilOrderActivity;
 import co.desofsi.shopapp.models.DateClass;
@@ -73,7 +74,7 @@ public class OrderListMerchantAdapter extends RecyclerView.Adapter<OrderListMerc
         holder.btn_options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(((CompanyOrdersActivity) context), MerchantDeatilOrderActivity.class);
+                Intent intent = new Intent(((HomeActivity) context), MerchantDeatilOrderActivity.class);
                 intent.putExtra("order", order);
                 intent.putExtra("position", position);
                 context.startActivity(intent);
