@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -21,6 +22,7 @@ import co.desofsi.shopapp.merchantsactivities.CompanyOrdersActivity;
 import co.desofsi.shopapp.merchantsactivities.MerchantDeatilOrderActivity;
 import co.desofsi.shopapp.models.DateClass;
 import co.desofsi.shopapp.models.Order;
+import co.desofsi.shopapp.routes.Routes;
 
 public class OrderListMerchantAdapter extends RecyclerView.Adapter<OrderListMerchantAdapter.TypeCompanyHolder> {
 
@@ -61,7 +63,7 @@ public class OrderListMerchantAdapter extends RecyclerView.Adapter<OrderListMerc
             case "pendiente":
                 holder.imageView.setImageResource(R.drawable.ic_baseline_store_mall_directory_24);
                 break;
-            case "confirmado":
+            case "Confirmado":
                 holder.imageView.setImageResource(R.drawable.ic_baseline_confirmation_number_24);
                 break;
             case "entregado":
@@ -74,10 +76,13 @@ public class OrderListMerchantAdapter extends RecyclerView.Adapter<OrderListMerc
         holder.btn_options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Routes.ORDER_ID = order.getId();
+                Routes.ORDER_STATUS = order.getStatus();
                 Intent intent = new Intent(((HomeActivity) context), MerchantDeatilOrderActivity.class);
                 intent.putExtra("order", order);
                 intent.putExtra("position", position);
                 context.startActivity(intent);
+             //   Toast.makeText(context,""+Routes.ORDER_ID, Toast.LENGTH_LONG).show();
             }
         });
 

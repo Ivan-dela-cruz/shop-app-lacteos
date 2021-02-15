@@ -1,29 +1,43 @@
 package co.desofsi.shopapp.merchantsactivities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +53,10 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,21 +69,43 @@ import co.desofsi.shopapp.maps.MapsActivityOrder;
 import co.desofsi.shopapp.models.DateClass;
 import co.desofsi.shopapp.models.DetailOrder;
 import co.desofsi.shopapp.models.Order;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.Route;
 
 public class MerchantDeatilOrderActivity extends AppCompatActivity {
+    private static final int PERMISSION_REQUEST_CODE = 1;
+    private static final int CAMERA_REQUEST = 103;
     private ArrayList<DetailOrder> lis_products;
     private RecyclerView recyclerView;
     private SharedPreferences sharedPreferences;
 
     private ImageButton btn_home, btn_download;
-    private TextView txt_order_number,  txt_order_data,  txt_order_total ;
-    private Button btn_delivery, btn_deactivate;
+    private TextView txt_order_number, txt_order_data, txt_order_total;
+    private Button btnRegisterPayment, btn_deactivate;
     private ScrollView scrollView;
     private DateClass dateClass;
     private Order order;
     private Company company;
+    ImageView camera_preview;
+    Button btnSendPayment, btnCancelPayment;
 
     private static final int PERMISSION_STORAGE_CODE = 1000;
+    int method = 0;
+    String camera_file_path;
+
+    private static final String CARPETA_PRINCIPAL = "DCIM/";//directorio principal
+    private static final String CARPETA_IMAGEN = "APPSHOP";//carpeta donde se guardan las fotos
+    private static final String DIRECTORIO_IMAGEN = CARPETA_PRINCIPAL + CARPETA_IMAGEN;//ruta carpeta de directorios
+
+    private String path;//almacena la ruta de la imagen
+    File fileImage;
+    Bitmap bitmap;
+    private static final int COD_PHOTO = 20;
+    ProgressDialog progress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,18 +131,17 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
             loadReviewOrder();
             getOrdersDetail();
             if (order.getStatus().equals("anulado")) {
-                btn_delivery.setVisibility(View.GONE);
+                btnRegisterPayment.setVisibility(View.GONE);
                 btn_deactivate.setVisibility(View.GONE);
             }
             if (order.getStatus().equals("pendiente")) {
                 btn_deactivate.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 btn_deactivate.setVisibility(View.GONE);
             }
 
         } catch (Exception e) {
             Toast.makeText(MerchantDeatilOrderActivity.this, "Error: " + e, Toast.LENGTH_SHORT).show();
-
 
         }
     }
@@ -117,13 +156,18 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
         txt_order_total = findViewById(R.id.merchant_detail_order_txt_total);
         btn_home = findViewById(R.id.merchant_detail_order_btn_back);
         btn_download = findViewById(R.id.merchant_detail_order_btn_download);
-        btn_delivery = findViewById(R.id.merchant_detail_order_btn_map);
+        btnRegisterPayment = findViewById(R.id.btnRegisterPayment);
         btn_deactivate = findViewById(R.id.merchant_detail_order_btn_deactivate);
         scrollView = findViewById(R.id.merchant_detail_order_scroll);
         recyclerView = findViewById(R.id.merchant_detail_order_recycler);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MerchantDeatilOrderActivity.this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        if (!Routes.ORDER_STATUS.equals("Registrado")) {
+            btnRegisterPayment.setVisibility(View.GONE);
+            Toast.makeText(MerchantDeatilOrderActivity.this, "Pago registrado", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void loadReviewOrder() {
@@ -162,12 +206,22 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
                 }
             }
         });
-        btn_delivery.setOnClickListener(new View.OnClickListener() {
+        btnRegisterPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MerchantDeatilOrderActivity.this, MapsActivityOrder.class);
-                intent.putExtra("order", order);
-                startActivity(intent);
+                method = 1;
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+                    if (checkPermission(Manifest.permission.CAMERA)) {
+                        //filePicker(1);
+                        openCamera();
+                    } else {
+                        requestPermission(Manifest.permission.CAMERA);
+                    }
+                } else {
+                    //  filePicker(1);
+                }
+
+                //    Toast.makeText(MerchantDeatilOrderActivity.this, "Registrar Pago", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -296,10 +350,12 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
         switch (requestCode) {
             case PERMISSION_STORAGE_CODE: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
+                    // Toast.makeText(MerchantDeatilOrderActivity.this, "Permission Successfull", Toast.LENGTH_SHORT).show();
+                    // filePicker(method);
+                    openCamera();
                     startDownLoad();
                 } else {
-                    Toast.makeText(MerchantDeatilOrderActivity.this, "Habilite el permiso de almacenamiento", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MerchantDeatilOrderActivity.this, "Habilite los permisos necesarios", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -323,7 +379,7 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
                                     JSONObject type_object = array.getJSONObject(i);
                                     DetailOrder detail = new DetailOrder();
                                     detail.setId(type_object.getInt("id"));
-                                    detail.setId_order( order.getId());
+                                    detail.setId_order(order.getId());
                                     detail.setId_product(type_object.getInt("articulo_id"));
                                     detail.setCant(type_object.getInt("cantidad"));
                                     detail.setProduct_name(type_object.getString("articulo"));
@@ -363,5 +419,211 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(MerchantDeatilOrderActivity.this);
         requestQueue.add(stringRequest);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case COD_PHOTO:
+                MediaScannerConnection.scanFile(MerchantDeatilOrderActivity.this, new String[]{path}, null,
+                        new MediaScannerConnection.OnScanCompletedListener() {
+                            @Override
+                            public void onScanCompleted(String path, Uri uri) {
+                                Log.i("Path", "" + path);
+                            }
+                        });
+
+                bitmap = BitmapFactory.decodeFile(path);
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                Bitmap b = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                        bitmap.getHeight(), matrix, true);
+                dialogPaymentPicture(b);
+
+                break;
+        }
+        bitmap = resizeImage(bitmap, 600, 800);
+    }
+
+    private void openCamera() {
+        File miFile = new File(Environment.getExternalStorageDirectory(), DIRECTORIO_IMAGEN);
+        boolean isCreated = miFile.exists();
+
+        if (isCreated == false) {
+            isCreated = miFile.mkdirs();
+        }
+
+        if (isCreated == true) {
+            Long consecutive = System.currentTimeMillis() / 1000;
+            String name = consecutive.toString() + ".jpg";
+
+            path = Environment.getExternalStorageDirectory() + File.separator + DIRECTORIO_IMAGEN
+                    + File.separator + name;//indicamos la ruta de almacenamiento
+
+            fileImage = new File(path);
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileImage));
+
+            ////
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                String authorities = this.getPackageName() + ".provider";
+                Uri imageUri = FileProvider.getUriForFile(this, authorities, fileImage);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+            } else {
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileImage));
+            }
+            startActivityForResult(intent, COD_PHOTO);
+
+            camera_file_path = fileImage.getPath();
+
+        }
+    }
+
+    private Bitmap resizeImage(Bitmap bitmap, float newHeight, float newWidth) {
+
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        if (width > newHeight || height > newWidth) {
+            float scaleWidth = newHeight / width;
+            float scaleHeight = newWidth / height;
+
+            Matrix matrix = new Matrix();
+            matrix.postScale(scaleWidth, scaleHeight);
+
+            return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
+
+        } else {
+            return bitmap;
+        }
+    }
+
+    public void dialogPaymentPicture(Bitmap thumb) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MerchantDeatilOrderActivity.this);
+        LayoutInflater inflater = (LayoutInflater) MerchantDeatilOrderActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.dialog_prev_payment, null);
+        builder.setView(view);
+        initDialog(view);
+        // bitmap = resizeImage(thumb, 600, 800);
+        camera_preview.setImageBitmap(thumb);
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(false);
+        // codeAnimal.setText(code_animal);
+        btnSendPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                storePayment();
+                progress = new ProgressDialog(MerchantDeatilOrderActivity.this);
+                progress.setMessage("Enviando...");
+                progress.show();
+                progress.setCanceledOnTouchOutside(false);
+                dialog.dismiss();
+            }
+
+        });
+        btnCancelPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //  listTimeMilking.clear();
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public void initDialog(View view) {
+        camera_preview = view.findViewById(R.id.camera_preview);
+        btnSendPayment = view.findViewById(R.id.btnSendPayment);
+        btnCancelPayment = view.findViewById(R.id.btnCancelPayment);
+    }
+
+    public void storePayment() {
+        UploadTask uploadTask = new UploadTask();
+        uploadTask.execute(new String[]{camera_file_path});
+    }
+
+    private boolean checkPermission(String permission) {
+        int result = ContextCompat.checkSelfPermission(MerchantDeatilOrderActivity.this, permission);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void requestPermission(String permission) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(MerchantDeatilOrderActivity.this, permission)) {
+            Toast.makeText(MerchantDeatilOrderActivity.this, "Please Allow Permission", Toast.LENGTH_SHORT).show();
+        } else {
+            ActivityCompat.requestPermissions(MerchantDeatilOrderActivity.this, new String[]{permission}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    public class UploadTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //  progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            try {
+                JSONObject object = new JSONObject(s);
+                if (object.getBoolean("success")) {
+                    Toast.makeText(MerchantDeatilOrderActivity.this, "¡Pago registrado con exito!", Toast.LENGTH_SHORT).show();
+                    btnRegisterPayment.setVisibility(View.GONE);
+                }
+            } catch (Exception e) {
+                Toast.makeText(MerchantDeatilOrderActivity.this, "¡Error al registrar pago!", Toast.LENGTH_SHORT).show();
+
+                e.printStackTrace();
+            }
+
+
+            progress.hide();
+            // progressBar.setVisibility(View.GONE);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            File file1 = new File(strings[0]);
+            String url = Routes.SEND_PAYMENT;
+            String token = sharedPreferences.getString("token", "");
+
+            String order_id = String.valueOf(Routes.ORDER_ID);
+
+            try {
+                RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                        .addFormDataPart("files1", file1.getName(), RequestBody.create(MediaType.parse("*/*"), file1))
+                        .addFormDataPart("order_id", order_id)
+                        .addFormDataPart("submit", "submit")
+                        .build();
+                okhttp3.Request request = new okhttp3.Request.Builder()
+                        .url(url)
+                        .addHeader("Authorization", "Bearer " + token)
+                        .post(requestBody)
+                        .build();
+
+                OkHttpClient okHttpClient = new OkHttpClient();
+                //now progressbar not showing properly let's fixed it
+                okhttp3.Response response = okHttpClient.newCall(request).execute();
+                if (response != null && response.isSuccessful()) {
+                    return response.body().string();
+                } else {
+                    return null;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 }

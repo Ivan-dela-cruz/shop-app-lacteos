@@ -24,11 +24,11 @@
 
             <ImageButton
                 android:id="@+id/merchant_detail_order_btn_back"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@android:color/transparent"
@@ -40,13 +40,13 @@
 
             <ImageButton
                 android:id="@+id/merchant_detail_order_btn_download"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="15dp"
                 android:background="@android:color/transparent"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
@@ -63,7 +63,7 @@
                 android:fontFamily="@font/opensans_bold"
                 android:gravity="center"
                 android:text="Orden "
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/md_white_1000"
                 android:textSize="18dp" />
 
             <TextView
@@ -245,13 +245,13 @@
         android:layout_marginBottom="5dp">
 
         <Button
-            android:id="@+id/merchant_detail_order_btn_map"
+            android:id="@+id/btnRegisterPayment"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/blue_border_rounded_cornwe"
             android:fontFamily="@font/opensans_regular"
-            android:text="Buscar repartidor"
+            android:text="Registrar Pago"
             android:textAllCaps="false"
             android:textColor="@color/colorWhite"
             android:textSize="15sp"
