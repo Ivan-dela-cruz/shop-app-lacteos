@@ -198,13 +198,13 @@ public class SingUpFragment extends Fragment {
                                 JSONObject user = object.getJSONObject("user");
                                 SharedPreferences userPref = getActivity().getApplicationContext().getSharedPreferences("user", getContext().MODE_PRIVATE);
                                 SharedPreferences.Editor editor = userPref.edit();
-
                                 editor.putString("token", object.getString("token"));
-                                editor.putString("name", user.getString("name"));
-                                editor.putString("username", user.getString("username"));
+                                editor.putInt("id", user.getInt("id"));
+                                editor.putString("name", user.getString("nombres"));
+                                editor.putString("username", user.getString("usuario"));
                                 editor.putString("url_image", user.getString("url_image"));
                                 editor.putBoolean("isLoggedIn",true);
-                                editor.putString("role", object.getString("role"));
+                               // editor.putString("role", object.getString("role"));
                                 editor.apply();
 
 

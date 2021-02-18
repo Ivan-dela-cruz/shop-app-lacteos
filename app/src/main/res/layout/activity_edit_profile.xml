@@ -62,7 +62,7 @@
 
                         <LinearLayout
                             android:layout_width="296dp"
-                            android:layout_height="360.3dp"
+                            android:layout_height="320.3dp"
                             android:layout_marginBottom="35dp"
                             android:background="@drawable/white_rounded_corner"
                             android:orientation="vertical"
@@ -91,26 +91,13 @@
                                     android:id="@+id/edit_profile_name"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:hint="Nombre"
+                                    android:hint="Nombres y Apellidos"
                                     android:inputType="textPersonName"
                                     android:textSize="15sp" />
                             </com.google.android.material.textfield.TextInputLayout>
 
 
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/edit_profile_last_name_ly"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="6dp">
 
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/edit_profile_last_name"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:hint="Apellidos"
-                                    android:inputType="textPersonName"
-                                    android:textSize="15sp" />
-                            </com.google.android.material.textfield.TextInputLayout>
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/edit_profile_movil_ly"
