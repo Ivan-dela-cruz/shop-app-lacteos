@@ -3,82 +3,79 @@ package co.desofsi.shopapp.models;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private int id, id_customer;
-    private String ci,ruc, name,  last_name,  address,phone,  email,  birth_date, gender,url_image;
+    int profile_id, user_id;
+    String nombre, tipo_documento, num_documento, direccion, telefono, email, url_image, usuario;
+
+    public User(int profile_id, int user_id, String nombre, String tipo_documento, String num_documento, String direccion, String telefono, String email, String url_image, String usuario) {
+        this.profile_id = profile_id;
+        this.user_id = user_id;
+        this.nombre = nombre;
+        this.tipo_documento = tipo_documento;
+        this.num_documento = num_documento;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+        this.url_image = url_image;
+        this.usuario = usuario;
+    }
 
     public User() {
     }
 
-    public String getUrl_image() {
-        return url_image;
+    public int getProfile_id() {
+        return profile_id;
     }
 
-    public void setUrl_image(String url_image) {
-        this.url_image = url_image;
+    public void setProfile_id(int profile_id) {
+        this.profile_id = profile_id;
     }
 
-    public int getId() {
-        return id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public int getId_customer() {
-        return id_customer;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setId_customer(int id_customer) {
-        this.id_customer = id_customer;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getCi() {
-        return ci;
+    public String getTipo_documento() {
+        return tipo_documento;
     }
 
-    public void setCi(String ci) {
-        this.ci = ci;
+    public void setTipo_documento(String tipo_documento) {
+        this.tipo_documento = tipo_documento;
     }
 
-    public String getRuc() {
-        return ruc;
+    public String getNum_documento() {
+        return num_documento;
     }
 
-    public void setRuc(String ruc) {
-        this.ruc = ruc;
+    public void setNum_documento(String num_documento) {
+        this.num_documento = num_documento;
     }
 
-    public String getName() {
-        return name;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getEmail() {
@@ -89,19 +86,19 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getBirth_date() {
-        return birth_date;
+    public String getUrl_image() {
+        return url_image;
     }
 
-    public void setBirth_date(String birth_date) {
-        this.birth_date = birth_date;
+    public void setUrl_image(String url_image) {
+        this.url_image = url_image;
     }
 
-    public String getGender() {
-        return gender;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 }

@@ -52,7 +52,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private ImageButton btn_back;
     private ImageView img_user;
     private TextInputLayout ly_name, ly_last_name, ly_phone, ly_movil;
-    private TextInputEditText name, last_name, phone, ci, address;
+    private TextInputEditText name, phone, ci, address; //last_name
     private User user;
 
     private ProgressDialog dialog;
@@ -74,12 +74,12 @@ public class EditProfileActivity extends AppCompatActivity {
         if (!user.getUrl_image().equals("")) {
             Picasso.get().load(Routes.URL + user.getUrl_image()).into(img_user);
         }
-        name.setText(user.getName());
+        name.setText(user.getNombre());
 
-        last_name.setText(user.getLast_name());
-        ci.setText(user.getCi());
-        phone.setText(user.getPhone());
-        address.setText(user.getAddress());
+       // last_name.setText(user.getLast_name());
+        ci.setText(user.getNum_documento());
+        phone.setText(user.getTelefono());
+        address.setText(user.getDireccion());
 
 
     }
@@ -90,11 +90,11 @@ public class EditProfileActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         img_user = findViewById(R.id.edit_profile_img);
         ly_name = findViewById(R.id.edit_profile_name_ly);
-        ly_last_name = findViewById(R.id.edit_profile_last_name_ly);
+      //  ly_last_name = findViewById(R.id.edit_profile_last_name_ly);
         ly_movil = findViewById(R.id.edit_profile_movil_ly);
         ly_phone = findViewById(R.id.edit_profile_phone_ly);
         name = findViewById(R.id.edit_profile_name);
-        last_name = findViewById(R.id.edit_profile_last_name);
+     //   last_name = findViewById(R.id.edit_profile_last_name);
         ci = findViewById(R.id.edit_profile_movil);
         phone = findViewById(R.id.edit_profile_phone);
         address = findViewById(R.id.edit_profile_address);
@@ -158,7 +158,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         });
-        last_name.addTextChangedListener(new TextWatcher() {
+      /*  last_name.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -177,7 +177,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        });*/
         ci.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -231,7 +231,7 @@ public class EditProfileActivity extends AppCompatActivity {
         dialog.show();
 
         final String names = name.getText().toString().trim();
-        final String last_names = last_name.getText().toString().trim();
+        //final String last_names = last_name.getText().toString().trim();
         final String cis = ci.getText().toString().trim();
         final String phones = phone.getText().toString().trim();
         final String address_u = address.getText().toString().trim();
@@ -276,11 +276,13 @@ public class EditProfileActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("name", names);
-                map.put("last_name", last_names);
+               // map.put("last_name", last_names);
                 map.put("ci", cis);
                 map.put("phone", phones);
                 map.put("address", address_u);
-                map.put("url_image", bitmapToString(bitmap));
+                if(bitmap != null){
+                    map.put("url_image", bitmapToString(bitmap));
+                }
 
                 return map;
             }
@@ -308,11 +310,11 @@ public class EditProfileActivity extends AppCompatActivity {
             ly_name.setError("El nombre es obligatorio");
             return false;
         }
-        if (last_name.getText().toString().isEmpty()) {
+       /* if (last_name.getText().toString().isEmpty()) {
             ly_last_name.setErrorEnabled(true);
             ly_last_name.setError("El apellido es obligatorio");
             return false;
-        }
+        }*/
         if (ci.getText().toString().isEmpty()) {
             ly_movil.setErrorEnabled(true);
             ly_movil.setError("La identificación es obligatoria");

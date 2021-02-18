@@ -45,7 +45,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AccountFragment extends Fragment {
     private View view;
-    private TextView txt_name, txt_address, txt_phone, txt_ci, txt_email;
+    private TextView txt_name, txt_address, txt_phone, txt_dni, txt_email, txt_user;
     private Button btn_logout, btn_edit;
     private ImageView btn_edit_pass;
     private CircleImageView img_user;
@@ -74,14 +74,14 @@ public class AccountFragment extends Fragment {
 
         txt_name = view.findViewById(R.id.account_fragment_txt_name);
         txt_address = view.findViewById(R.id.account_fragment_txt_address);
-        txt_ci = view.findViewById(R.id.account_fragment_txt_ci);
+        txt_dni = view.findViewById(R.id.account_fragment_txt_dni);
         txt_phone = view.findViewById(R.id.account_fragment_txt_phone);
         txt_email = view.findViewById(R.id.account_fragment_txt_email);
 
         btn_edit = view.findViewById(R.id.account_fragment_btn_edit);
         btn_edit_pass = view.findViewById(R.id.account_fragment_btn_edit_pass);
         btn_logout = view.findViewById(R.id.account_fragment_btn_logout);
-        txt_address = view.findViewById(R.id.account_fragment_txt_address);
+        txt_user = view.findViewById(R.id.account_fragment_txt_user);
         img_user = view.findViewById(R.id.account_fragment_image);
     }
 
@@ -180,16 +180,16 @@ public class AccountFragment extends Fragment {
                                 JSONObject user = object.getJSONObject("user");
 
                                 User user_profile = new User();
-                                user_profile.setId(profile.getInt("id"));
-                                user_profile.setId_customer(profile.getInt("id_user"));
-                                user_profile.setCi(profile.getString("ci"));
-                                user_profile.setRuc(profile.getString("ruc"));
-                                user_profile.setName(profile.getString("name"));
-                                user_profile.setLast_name(profile.getString("last_name"));
-                                user_profile.setAddress(profile.getString("address"));
-                                user_profile.setPhone(profile.getString("phone"));
-                                user_profile.setEmail(profile.getString("email"));
-                                user_profile.setUrl_image(user.getString("url_image"));
+                                user_profile.setProfile_id(profile.getInt("id"));
+                                user_profile.setNombre(profile.getString("nombre"));
+                                user_profile.setTipo_documento(profile.getString("tipo_documento"));
+                                user_profile.setNum_documento(profile.getString("num_documento"));
+                                user_profile.setDireccion(profile.getString("direccion"));
+                                user_profile.setTelefono(profile.getString("telefono"));
+                                user_profile.setUser_id(user.getInt("id"));
+                                user_profile.setEmail(user.getString("email"));
+                                user_profile.setUsuario(user.getString("usuario"));
+                                user_profile.setUrl_image(profile.getString("url_image"));
 
                                 user_login = user_profile;
                                 loadProfile(user_profile);
@@ -225,11 +225,12 @@ public class AccountFragment extends Fragment {
 
     public void loadProfile(User user) {
 
-        txt_name.setText(user.getName() + " " + user.getLast_name());
-        txt_ci.setText(user.getCi());
-        txt_address.setText(user.getAddress());
+        txt_name.setText(user.getNombre());
+        txt_dni.setText(user.getNum_documento());
+        txt_address.setText(user.getDireccion());
         txt_email.setText(user.getEmail());
-        txt_phone.setText(user.getPhone());
+        txt_phone.setText(user.getTelefono());
+        txt_user.setText(user.getUsuario());
         if (!user.getUrl_image().equals("")) {
             Picasso.get().load(Routes.URL + user.getUrl_image()).into(img_user);
         }
