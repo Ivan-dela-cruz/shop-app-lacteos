@@ -574,6 +574,7 @@ public class MerchantDeatilOrderActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             try {
+                System.out.println("RRRRR"+s);
                 JSONObject object = new JSONObject(s);
                 if (object.getBoolean("success")) {
                     Toast.makeText(MerchantDeatilOrderActivity.this, "¡Pago registrado con exito!", Toast.LENGTH_SHORT).show();
