@@ -250,7 +250,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                             }else {
                                 String message = object.getString("message");
-                            
+
                                 Toast.makeText(EditProfileActivity.this, message, Toast.LENGTH_SHORT).show();
                             }
                         } catch (Exception e) {
