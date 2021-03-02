@@ -98,7 +98,7 @@ public class OrderFragmentMerchant extends Fragment {
         String name = sharedPreferences.getString("name","");
         order.setId_user(id_user);
         order.setId_company(1);
-        order.setName_company("SIMON RODRIGUEZ");
+        order.setName_company("SIMÓN RODRÍGUEZ");
         order.setName_customer(name);
         order.setDate(dateClass.dateToday());
         order.setDate_format(dateClass.dateTodayFormatServer());
@@ -131,7 +131,7 @@ public class OrderFragmentMerchant extends Fragment {
 
         ///COMPONENTES DEL ACTIVITY
         //Picasso.get().load(Routes.URL + company.getUrl_merchant()).into(image_baner);
-        text_baner_name.setText("SIMÓN RODIRGUEZ");
+        text_baner_name.setText("SIMÓN RODRÍGUEZ");
         text_baner_des.setText("Asociación de Productores de Leche");
 
 

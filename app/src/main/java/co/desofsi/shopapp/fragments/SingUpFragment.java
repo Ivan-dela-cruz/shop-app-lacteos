@@ -211,6 +211,9 @@ public class SingUpFragment extends Fragment {
                                 startActivity(new Intent(((AuthActivity)getContext()), HomeActivity.class));
                                 ((AuthActivity)getContext()).finish();
                                 Toast.makeText(getContext(), "Conectado", Toast.LENGTH_SHORT).show();
+                            } else {
+                                String message = object.getString("message");
+                                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
                             }
                         } catch (Exception e) {
                             dialog.dismiss();
