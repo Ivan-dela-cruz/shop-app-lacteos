@@ -248,6 +248,10 @@ public class EditProfileActivity extends AppCompatActivity {
                                 finish();
                                 Toast.makeText(EditProfileActivity.this, "Actualizado", Toast.LENGTH_SHORT).show();
 
+                            }else {
+                                String message = object.getString("message");
+                            
+                                Toast.makeText(EditProfileActivity.this, message, Toast.LENGTH_SHORT).show();
                             }
                         } catch (Exception e) {
                             dialog.dismiss();

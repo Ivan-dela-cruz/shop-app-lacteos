@@ -6,8 +6,8 @@ public class Routes {
     public static final String URL_MAP  = "https://maps.googleapis.com/maps/api/directions/json?origin=";
     public static final String DESTINATION = "&destination=";
     public static final String  API_KEY = "&key=AIzaSyDibwJl271dqQbcVduSLr56yCct_RMX8_g";
-
-    public static final String URL = "https://www.productoslacteossimonr.com/";
+    public static final String URL = "http://192.168.100.8/";
+   // public static final String URL = "https://www.productoslacteossimonr.com/";
     public static final String HOME = URL + "api";
     public static final String LOGIN = HOME + "/login";
     public static final String LOGOUT = HOME + "/logout";
