@@ -8,4 +8,6 @@
     <string name="description">Descripcion</string>
     <string name="price">Precio</string>
     <string name="name_project">Lácteos Rodriguez</string>
+    <string name="facebook_app_id">436745054241386</string> <string name="fb_login_protocol_scheme">fb436745054241386</string>
+
 </resources>

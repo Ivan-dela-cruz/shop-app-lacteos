@@ -123,6 +123,20 @@
                 android:textColor="@color/colorWhite"
 
                 />
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="296dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="Inicio con Facebook"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/colorWhite"
+                android:background="@color/md_blue_A400"
+                android:layout_marginBottom="30dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

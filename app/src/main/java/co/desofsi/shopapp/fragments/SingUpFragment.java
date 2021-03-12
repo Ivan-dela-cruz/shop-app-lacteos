@@ -20,9 +20,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.FacebookRequestError;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.login.LoginManager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -157,6 +165,7 @@ public class SingUpFragment extends Fragment {
         });
     }
 
+
     public boolean validated() {
 
         if (txt_email.getText().toString().isEmpty()) {
@@ -203,6 +212,7 @@ public class SingUpFragment extends Fragment {
                                 editor.putString("name", user.getString("nombres"));
                                 editor.putString("username", user.getString("usuario"));
                                 editor.putString("url_image", user.getString("url_image"));
+                                editor.putString("external_id", user.getString("external_id"));
                                 editor.putBoolean("isLoggedIn",true);
                                // editor.putString("role", object.getString("role"));
                                 editor.apply();
@@ -239,10 +249,12 @@ public class SingUpFragment extends Fragment {
                 map.put("last_name",last_name);
                 map.put("username",user);
                 map.put("phone",phone);
+                map.put("external_id","");
                 return map;
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
     }
+
 }

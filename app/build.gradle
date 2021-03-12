@@ -44,4 +44,5 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:2.0.3'
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+    implementation 'com.facebook.android:facebook-login:[5,6)'
 }

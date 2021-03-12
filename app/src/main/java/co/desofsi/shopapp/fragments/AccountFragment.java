@@ -26,6 +26,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.login.LoginManager;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -52,7 +57,7 @@ public class AccountFragment extends Fragment {
     private ProgressDialog dialog;
     SharedPreferences sharedPreferences;
     private User user_login;
-
+    String external_id = "";
     public AccountFragment() {
     }
 
@@ -71,7 +76,7 @@ public class AccountFragment extends Fragment {
         user_login = new User();
         dialog.setCancelable(false);
         sharedPreferences = getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
-
+        external_id = sharedPreferences.getString("external_id", "");
         txt_name = view.findViewById(R.id.account_fragment_txt_name);
         txt_address = view.findViewById(R.id.account_fragment_txt_address);
         txt_dni = view.findViewById(R.id.account_fragment_txt_dni);
@@ -83,6 +88,7 @@ public class AccountFragment extends Fragment {
         btn_logout = view.findViewById(R.id.account_fragment_btn_logout);
         txt_user = view.findViewById(R.id.account_fragment_txt_user);
         img_user = view.findViewById(R.id.account_fragment_image);
+
     }
 
     public void eventsButtons() {
@@ -94,7 +100,13 @@ public class AccountFragment extends Fragment {
                         .setCancelable(false)
                         .setPositiveButton("SI", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                logout();
+                               if(external_id.equalsIgnoreCase("")){
+                                   logout();
+                               }else{
+                                   disconnectFromFacebook();
+                                   logout();
+                               }
+
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -121,7 +133,21 @@ public class AccountFragment extends Fragment {
             }
         });
     }
+    public void disconnectFromFacebook() {
 
+        if (AccessToken.getCurrentAccessToken() == null) {
+            return; // already logged out
+        }
+
+        new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE.DELETE, new GraphRequest.Callback() {
+            @Override
+            public void onCompleted(GraphResponse graphResponse) {
+
+                LoginManager.getInstance().logOut();
+
+            }
+        }).executeAsync();
+    }
     public void logout() {
         dialog.setMessage("Cerrando sesión");
         dialog.show();
@@ -230,7 +256,7 @@ public class AccountFragment extends Fragment {
         txt_address.setText(user.getDireccion());
         txt_email.setText(user.getEmail());
         txt_phone.setText(user.getTelefono());
-        txt_user.setText(user.getUsuario());
+       // txt_user.setText(user.getUsuario());
         if (!user.getUrl_image().equals("")) {
             Picasso.get().load(Routes.URL + user.getUrl_image()).into(img_user);
         }
