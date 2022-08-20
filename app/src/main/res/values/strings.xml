@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Venta Lacteos</string>
+    <string name="app_name">SOLPROTECH</string>
     <string name="main_page_selected">%s page is selected</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_route_delivery">Map</string>
@@ -7,7 +7,7 @@
     <string name="name">Nombre</string>
     <string name="description">Descripcion</string>
     <string name="price">Precio</string>
-    <string name="name_project">Lácteos Rodriguez</string>
+    <string name="name_project">SOLPROTECH</string>
     <string name="facebook_app_id">436745054241386</string> <string name="fb_login_protocol_scheme">fb436745054241386</string>
 
 </resources>

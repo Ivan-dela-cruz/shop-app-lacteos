@@ -28,7 +28,7 @@
                 android:layout_height="140dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="21.7dp"
-                android:src="@drawable/logovaca"
+                android:src="@drawable/logotech"
                 android:visibility="visible" />
 
 
@@ -124,6 +124,7 @@
 
                 />
             <com.facebook.login.widget.LoginButton
+                android:visibility="gone"
                 android:id="@+id/login_button"
                 android:layout_width="296dp"
                 android:layout_height="80dp"

@@ -9,7 +9,7 @@ android:layout_margin="5dp"
 android:foreground="?android:attr/selectableItemBackground"
 android:orientation="vertical"
 app:ignore="NamespaceTypo"
-cardview:cardCornerRadius="12dp">
+cardview:cardCornerRadius="5dp">
 
 <RelativeLayout
     android:layout_width="match_parent"
@@ -22,10 +22,10 @@ cardview:cardCornerRadius="12dp">
         <ImageView
             android:id="@+id/imageHP"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="130dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:background="@color/colorLightGrey" />
+            android:background="@color/colorWhite" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -40,6 +40,7 @@ cardview:cardCornerRadius="12dp">
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:visibility="gone"
                     android:layout_marginLeft="10dp"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
@@ -52,7 +53,7 @@ cardview:cardCornerRadius="12dp">
                     android:layout_marginLeft="8dp"
                     android:text="@string/name"
                     android:textColor="@color/md_black_1000"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"/>
             </LinearLayout>
             <!--LinearLayout
@@ -114,8 +115,8 @@ cardview:cardCornerRadius="12dp">
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/rounded_btn_shop_transparent"
-        android:src="@drawable/ic_cart_home"
         android:clickable="true"
+        android:src="@drawable/ic_cart_home"
         cardview:layout_constraintBottom_toBottomOf="parent"
         cardview:layout_constraintEnd_toEndOf="parent" />
 

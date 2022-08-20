@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/show_product_image"
         android:layout_width="match_parent"
-        android:layout_height="310dp"
+        android:layout_height="350dp"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/frutas" />
     <LinearLayout

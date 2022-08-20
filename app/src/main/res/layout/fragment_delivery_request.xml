@@ -14,9 +14,9 @@
         <LinearLayout
             android:id="@+id/ly_types"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:orientation="vertical"
-            android:background="@color/colorWhite">
+            android:background="@color/colorPrimary">
             <TextView
                 android:id="@+id/list_companies_text_baner"
                 android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:fontFamily="@font/opensans_bold"
                 android:gravity="center"
                 android:text="Mis solicitudes"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:textSize="18dp" />
             <TextView
                 android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:fontFamily="@font/opensans_regular"
                 android:gravity="center"
                 android:text="@string/name_project"
-                android:textColor="@color/colorLightGrey"
+                android:textColor="@color/colorWhiteGray"
                 android:textSize="11dp" />
 
         </LinearLayout>

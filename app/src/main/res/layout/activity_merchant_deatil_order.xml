@@ -9,7 +9,7 @@
     tools:context=".merchantsactivities.MerchantDeatilOrderActivity">
 
     <LinearLayout
-        android:background="@color/md_blue_800"
+        android:background="@color/colorPrimary"
         android:id="@+id/layot_header"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -93,7 +93,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="45dp"
-        android:background="@color/md_blue_800"
+        android:background="@color/colorPrimary"
         android:descendantFocusability="beforeDescendants"
         android:fillViewport="true"
         android:focusableInTouchMode="true"
@@ -199,7 +199,7 @@
                                 android:fontFamily="@font/opensans_bold"
                                 android:gravity="start|center"
                                 android:text="Detalle"
-                                android:textColor="@color/md_blue_900"
+                                android:textColor="@color/colorTextDark"
                                 android:textSize="20sp" />
 
                             <View
@@ -209,7 +209,7 @@
                                 android:layout_alignParentEnd="true"
                                 android:layout_marginTop="34dp"
                                 android:layout_marginEnd="20dp"
-                                android:background="@color/md_blue_900" />
+                                android:background="@color/colorTextDark" />
 
                         </RelativeLayout>
 

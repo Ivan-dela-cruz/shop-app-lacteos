@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
+    android:layout_marginStart="1dp"
+    android:layout_marginEnd="1dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"
     app:ignore="NamespaceTypo">
@@ -35,8 +37,7 @@
                     android:src="@color/colorLightGrey" />
 
                 <TextView
-                    android:maxLength="250"
-                    android:background="@drawable/bg_transparent"
+                    android:visibility="gone"
                     android:id="@+id/lblTitleSlider"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -47,13 +48,14 @@
                     android:layout_marginTop="82dp"
                     android:layout_marginEnd="9dp"
                     android:layout_marginBottom="5dp"
+                    android:background="@drawable/bg_transparent"
+                    android:maxLength="250"
                     android:text="TEXTO"
                     android:textColor="@color/colorWhite"
                     android:textSize="15sp" />
 
                 <TextView
-                    android:maxLength="250"
-                    android:background="@drawable/bg_transparent"
+                    android:visibility="gone"
                     android:id="@+id/lblDescriptionSlider"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -64,6 +66,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="11dp"
                     android:layout_marginBottom="5dp"
+                    android:background="@drawable/bg_transparent"
+                    android:maxLength="250"
                     android:text="DESCRIPCION"
                     android:textColor="@color/colorWhite"
                     android:textSize="12sp" />
